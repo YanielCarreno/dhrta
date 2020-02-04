@@ -1,25 +1,23 @@
-## MRGA Strategy repository                                       
+## DHRTA Strategy repository                                       
 
-This repository contains the ROS-MRGA code, the domain and problems used in:
-
-"Task Allocation Strategy for Heterogeneous Robot Teams in Offshore Missions"
+This repository contains the ROS-DHRTA code, the domain and problems used to prove our task allocation strategy:
 
 The implementation is devided in two parts:
 
 
-### 1. GOALS ALLOCATION
+### 1. Goals Distribution
 
 1.1 Compilation:
 
    Select or create a catkin workspace:
 
-         mkdir -p mrga_ws/src
-         cd mrga_ws/
+         mkdir -p dhrta_ws/src
+         cd dhrta_ws/
 
    Get the code:
 
          cd src/
-         git clone https://github.com/YanielCarreno/MRGA.git
+         git clone https://github.com/YanielCarreno/DHRTA.git
 
    Compile everything:
 
@@ -27,14 +25,13 @@ The implementation is devided in two parts:
 
 1.2 To run an example:
 
-         roslaunch mrga mrga_strategy.launch
+         roslaunch dhrta dhrta_mission_execution.launch
 
 1.3 The results:
 
-The allocation_solution.txt file located in the mrga package shows the allocation's results. This results can be added to the PDDL problem files to generate plans using the steps in the TASK PLANNING section.
+The allocation_solution.txt file located in the dhrta package shows the allocation's results. The file contains all the goalas and the robot in charge of executing them. For instance, (poi_rock_analysis wp42)[rexrov0] defines the goal (written in PDDL format) is executed by robot rexrov0. These results can be added to the PDDL problem files to generate plans using the steps in the Task Planning section.
 
-
-### 2. TASK PLANNING
+### 2. Task Planning
 
 
 2.1 First folder (constrained_domain) contains the domain and problems that consider 
@@ -64,11 +61,12 @@ The allocation_solution.txt file located in the mrga package shows the allocatio
 
 If you are using this work for your research, please cite:
 ```
-@InProceedings{carreno2020task,
-  Title  = {Task Allocation Strategy for Heterogeneous Robot Teams in Offshore Missions},
+@InProceedings{carreno2020a,
+  Title  = {A Decentralised Strategy for Heterogeneous AUV Missions via Goal Distribution and Temporal Planning},
   Author = {Carreno, Yaniel and Pairet, {\`E}ric and Petillot, Yvan and Petrick, Ronald PA},
-  Booktitle = {Proceedings of the 2020 International Conference on Autonomous Agents and Multiagent Systems},
+  Booktitle = {Thirteenth International Conference on Automated Planning and Scheduling},
   Year = {2020}
+}
 }
 }
 ```
