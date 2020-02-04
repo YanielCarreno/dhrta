@@ -67,7 +67,5 @@ If you are using this work for your research, please cite:
   Booktitle = {Thirteenth International Conference on Automated Planning and Scheduling},
   Year = {2020}
 }
-}
-}
 ```
                 
