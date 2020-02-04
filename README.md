@@ -33,14 +33,11 @@ The allocation_solution.txt file located in the dhrta package shows the allocati
 
 ### 2. Task Planning
 
+- The folder "planning_file" shows an example of the PDDL domain and problems used for one of the robots to executed the its  part in the whole mission. The DHRTA strategy defines the goals the robot can implement and they are introduced in the robot's problem file using a framework to connect our algorithm and the robot's knowledge base which populate the problem file.
 
-2.1 First folder (constrained_domain) contains the domain and problems that consider 
-   the predicate "robot_can_act" to implement the plan which were generated using the 
-   Multi-Role Goal Assignment (MRGA) strategy presented in the paper.
+- If the DHRTA is not on place, benchmarh planners generate the task decomposition considering the definition of predicates associated with its capabilities which restrics the implentation to robots that present the capability. The goals are then distributed based on the AI planners task decomposition.
 
-2.2 Second folder (non-constrained_domain) constains a version of the domain and problems
-   in folder one without using the predicates generate by  the MRGA strategy.
-   
+
    How to run it?
    
        --> Clone the repository
