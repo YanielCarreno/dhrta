@@ -37,6 +37,8 @@ The allocation_solution.txt file located in the dhrta package shows the allocati
 
 - If the DHRTA is not on place, benchmarh planners generate the task decomposition considering the definition of predicates associated with its capabilities which restrics the implentation to robots that present the capability. The goals are then distributed based on the AI planners task decomposition.
 
+- The "dhrta_example" folder constains the results of DHRTA+TP. The set of goals is decomposed in subsets which are allocated to the problem files of 5 auvs. 
+
 
    How to run it?
    
