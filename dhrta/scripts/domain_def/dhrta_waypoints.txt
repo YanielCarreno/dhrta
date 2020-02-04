@@ -1,0 +1,46 @@
+wp0[0,0,-3,0,rov_initial]{rexrov0}        ;initial position rov1
+wp1[5,5,-3,0,rov_initial]{rexrov1}        ;initial position rov2
+wp2[-5,-5,-3,0,rov_initial]{rexrov2}      ;initial position rov3
+wp3[5,-5,-3,0,rov_initial]{rexrov3}       ;initial position rov4
+wp4[0,8,-3,0,rov_initial]{rexrov4}        ;initial position rov5
+wp10[-110,149,-0.1,0,dock]                ;docking-point 0
+wp11[-100,100,-1,0,dock]                  ;docking-point 1
+wp12[100,150,-1,0,dock]                   ;docking-point 2
+wp13[230,50,-1,0,dock]                    ;docking-point 3
+wp14[189,-150,-1,0,dock]                  ;docking-point 4
+wp30[-165,100,-40,0,goal]                 ;REGION 1
+wp31[-154,100,-50,180,goal]
+wp32[-176,100,-50,360,goal]
+wp33[-100,70,-40,0,goal]
+wp34[-89,70,-50,180,goal]
+wp35[-111,70,-50,360,goal]
+wp40[100,180,-40,0,goal]                  ;REGION 2
+wp41[111,180,-50,180,goal]
+wp42[89,180,-50,360,goal]
+wp43[180,180,-40,0,goal]
+wp44[191,180,-50,180,goal]
+wp45[171,180,-50,180,goal]
+wp50[200,50,-40,0,goal]                   ;REGION 3
+wp51[211,50,-50,180,goal]
+wp52[189,50,-50,360,goal]
+wp53[230,0,-40,0,goal]
+wp54[241,0,-50,180,goal]
+wp55[219,0,-50,360,goal]
+wp60[200,-150,-40,0,goal]                 ;REGION 4
+wp61[211,-150,-50,180,goal]
+wp62[189,-150,-50,360,goal]
+wp63[250,-200,-40,0,goal]
+wp64[261,-200,-50,180,goal]
+wp65[249,-200,-50,360,goal]
+wp70[-200,-150,-40,0,goal]                ;REGION 5
+wp71[-211,-150,-50,180,goal]
+wp72[-189,-150,-50,360,goal]
+wp73[-250,-200,-40,0,goal]
+wp74[-261,-200,-50,180,goal]
+wp75[-249,-200,-50,360,goal]
+wp80[0,-150,-40,0,goal]                   ;REGION 6
+wp81[-10,-150,-50,180,goal]
+wp82[10,-150,-50,360,goal]
+wp83[0,-200,-40,0,goal]
+wp84[-15,-200,-50,180,goal]
+wp85[15,-200,-50,360,goal]

@@ -1,0 +1,5 @@
+rexrov0[canMove, canSampleSoil, canSampleRock, canVisualiseCamera, canCadModel, canVisualiseSonar, canManipulate]{wp}
+rexrov1[canMove, canVisualiseCamera, canCadModel, canVisualiseSonar, canManipulate]{wp}
+rexrov2[canMove, canSampleSoil, canVisualiseCamera, canCadModel, canManipulate]{wp}
+rexrov3[canMove, canSampleSoil, canSampleRock]{wp}
+rexrov4[canMove, canSampleSoil, canSampleRock, canVisualiseSonar]{wp}

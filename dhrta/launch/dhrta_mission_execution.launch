@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- roadmap generation node-->
+	<arg name="waypoint_file"                default="$(find dhrta)/scripts/domain_def/dhrta_waypoints.txt" />
+	<arg name="goal_file"                    default="$(find dhrta)/scripts/domain_def/dhrta_goals.txt" />
+	<arg name="robot_file"                   default="$(find dhrta)/scripts/domain_def/dhrta_robots.txt" />
+	<arg name="ontology"                     default="ontology.yaml" />
+
+	<node name="decentralised_hrta" pkg="dhrta" type="DHRTAStrategy" respawn="false" output="screen">
+		<param name="waypoint_file"         value="$(arg waypoint_file)" />
+		<param name="goal_file"             value="$(arg goal_file)" />
+		<param name="robot_file"            value="$(arg robot_file)" />
+	</node>
+
+	<node name="decentralised_robots_distribution" pkg="dhrta" type="decentralised_robots_distribution.py" respawn="false" output="screen">
+		<param name="mission_constrains_directory"    value="$(find dhrta)/config/" />
+		<param name="ontology_directory"              value="$(arg ontology)" />
+	</node>
+
+	<node name="decentralised_goal_allocation" pkg="dhrta" type="decentralised_goal_allocation.py" respawn="false" output="screen">
+		<param name="mission_constrains_directory"    value="$(find dhrta)/config/" />
+		<param name="ontology_directory"              value="$(arg ontology)" />
+	</node>
+</launch>

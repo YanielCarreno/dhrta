@@ -1,0 +1,37 @@
+# makespan_static_actions.yaml file
+
+makespan:
+  poi_soil_analysis: 20
+  poi_rock_analysis: 20
+  poi_image_taken: 7
+  poi_target_inquired: 50
+  poi_structure_id: 30
+  poi_valve_turned: 35
+  explored: 50
+
+# capability required to implement a goal
+capability:
+  poi_soil_analysis: canSampleSoil
+  poi_rock_analysis: canSampleRock
+  poi_image_taken: canVisualiseCamera
+  poi_target_inquired: canCadModel
+  poi_structure_id: canVisualiseSonar
+  poi_valve_turned: canManipulate
+  explored: canMove
+
+redundancy:
+  poi_soil_analysis:
+    - none
+  poi_rock_analysis:
+    - none
+  poi_image_taken:
+    - none
+  poi_target_inquired:
+   - canVisualiseCamera
+  poi_structure_id:
+    - canVisualiseCamera
+    - canVisualiseSonar
+  poi_valve_turned:
+    - none
+  explored:
+    - none

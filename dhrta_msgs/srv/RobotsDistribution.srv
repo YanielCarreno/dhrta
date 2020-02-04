@@ -1,0 +1,5 @@
+string robot_file
+string goals_file
+---
+int32 robot_no
+bool result
