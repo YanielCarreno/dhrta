@@ -211,16 +211,12 @@
         (at end (increase (data_adquired ?r) 1))
         )
 )
-
-(:durative-action surface_point_allocation
+(:action surface_point_allocation
 :parameters (?r - robot ?wpi  ?wpf - waypoint)
-:duration ( = ?duration 1)
-:condition (and
-           (over all (close_to ?wpi ?wpf))
-           (over all (at ?r ?wpi))
-           )
-:effect (and
-        (at end (surface_point_at ?r ?wpf))
-        )
+:precondition (and
+           (close_to ?wpi ?wpf)
+           (at ?r ?wpi))
+  :effect (surface_point_at ?r ?wpf)
+
 )
 )

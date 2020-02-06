@@ -9,7 +9,6 @@
 )
 
 (:predicates (at ?r - robot ?wp - waypoint)
-             (robot_can_act ?r - robot ?wp - waypoint)
              (available ?r - robot)
              (close_to ?wpi  ?wpf - waypoint)
              (surface_point_at ?r -robot ?wp - waypoint)
@@ -45,7 +44,6 @@
 :parameters (?r - robot ?wpi  ?wpf - waypoint)
 :duration ( = ?duration (* (/ (distance ?wpi ?wpf) (speed ?r)) 2))
 :condition (and
-           (over all (robot_can_act ?r  ?wpf))
            (at start (available ?r))
            (at start (at ?r ?wpi))
            (at start (>= (energy ?r) (* (distance ?wpi ?wpf)(consumption ?r))))
@@ -64,7 +62,6 @@
 :parameters (?r - robot   ?wp - waypoint)
 :duration (= ?duration 20)
 :condition (and
-           (over all (robot_can_act ?r  ?wp))
            (over all (at ?r ?wp))
            (at start (at ?r ?wp))
            (at start (surface_point_at ?r ?wp))
@@ -84,7 +81,6 @@
 :parameters (?r - robot  ?wp - waypoint)
 :duration (= ?duration (/ (- 100 (energy ?r)) (recharge_rate ?r)))
 :condition (and
-          (over all (robot_can_act ?r  ?wp))
           (over all (at ?r ?wp))
           (at start (at ?r ?wp))
           (at start (surface_point_at ?r ?wp))
@@ -102,7 +98,6 @@
  :parameters (?r - robot ?s - robot_sensor  ?wp - waypoint)
  :duration (= ?duration 7)
  :condition (and
-            (over all (robot_can_act ?r  ?wp))
             (over all (equipped_for_camera_imaging ?r ?s))
             (over all (at ?r ?wp))
             (at start (at ?r ?wp))
@@ -122,7 +117,6 @@
 :parameters (?r - robot ?s - robot_sensor  ?wp - waypoint)
 :duration (= ?duration 20)
 :condition (and
-           (over all (robot_can_act ?r  ?wp))
            (over all (at ?r ?wp))
            (at start (at ?r ?wp))
            (at start (available ?r))
@@ -142,7 +136,6 @@
 :parameters (?r - robot ?s - robot_sensor ?wp - waypoint)
 :duration (= ?duration 20)
 :condition (and
-           (over all (robot_can_act ?r  ?wp))
            (over all (at ?r ?wp))
            (over all (equipped_for_soil_analysis ?r ?s))
            (at start (at ?r ?wp))
@@ -162,7 +155,6 @@
  :parameters (?r - robot ?s - robot_sensor ?wp - waypoint)
  :duration ( = ?duration 30)
  :condition (and
-             (over all (robot_can_act ?r  ?wp))
              (over all (at ?r ?wp))
              (over all (equipped_for_sonar_imaging ?r ?s))
              (at start (at ?r ?wp))
@@ -182,7 +174,6 @@
  :parameters (?r - robot ?s - robot_sensor ?wp - waypoint)
  :duration ( = ?duration 50)
  :condition (and
-             (over all (robot_can_act ?r  ?wp))
              (over all (at ?r ?wp))
              (over all (equipped_for_cad_classification ?r ?s))
              (at start (at ?r ?wp))
@@ -202,7 +193,6 @@
 :parameters (?r - robot  ?wp - waypoint ?a - robot_actuator ?v1 ?v2 - valve)
 :duration (= ?duration 35)
 :condition (and
-           (over all (robot_can_act ?r  ?wp))
            (over all (equipped_for_valve_turning ?r  ?a))
            (over all (at ?r ?wp))
            (at start (at ?r ?wp))
@@ -222,16 +212,12 @@
         )
 )
 
-(:durative-action surface_point_allocation
+(:action surface_point_allocation
 :parameters (?r - robot ?wpi  ?wpf - waypoint)
-:duration ( = ?duration 1)
-:condition (and
-           (over all (robot_can_act ?r  ?wpf))
-           (over all (close_to ?wpi ?wpf))
-           (over all (at ?r ?wpi))
-           )
-:effect (and
-        (at end (surface_point_at ?r ?wpf))
-        )
+:precondition (and
+           (close_to ?wpi ?wpf)
+           (at ?r ?wpi))
+  :effect (surface_point_at ?r ?wpf)
+
 )
 )
