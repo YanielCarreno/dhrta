@@ -10,28 +10,31 @@ import cv2
 import time
 import re
 import yaml
+import csv
 from std_msgs.msg import String
 from linecache import getline
 from std_srvs.srv import Empty, EmptyResponse
 from dhrta_msgs.srv import RobotsDistribution, RobotsDistributionResponse
 
-# Import the library to read csv
-import csv
 
 class decentralised_robots_distribution(object):
 
     def __init__(self):
-        '''
-        constructor
-        '''
+        #=======================================================================
+        # constructor
+        #=======================================================================
         rospy.init_node('decentralised_robots_distribution')
         rospy.Service('decentralised_robots_distribution', RobotsDistribution, self.serviceCall)
-
-        # Has the goal been loaded?
+        #=======================================================================
+        # Initialisation
+        #=======================================================================
         self.capabilities_recognised = False
         self.goals_indx_allocated = False
 
     def serviceCall(self, req):
+        #=======================================================================
+        # System inputs to implement robots distribution
+        #=======================================================================
         self.goals_file = req.goals_file
         self.robot_file = req.robot_file
         self.mission_constrains_directory = rospy.get_param('~mission_constrains_directory')
@@ -42,19 +45,12 @@ class decentralised_robots_distribution(object):
             self.goals_indx_dist = open(str(self.mission_constrains_directory)+ 'goals_indx_distribution.txt', 'w+')
             for capability_robot_indx in range(0, len(self.robot_set)):
                 self.final_array = []
-                self.final_redundancy = []
                 for capability_data_indx in range(0, len(self.data)):
                     for capability_goal_indx in range(0, len(self.goal_set)):
                         if self.robot_set[capability_robot_indx] in self.data[capability_data_indx] and  self.goal_set[capability_goal_indx] in self.data[capability_data_indx]:
                             self.final_array.append("g"+str(capability_goal_indx)+".-")
-                            redundacy_element = str(self.redundancy_set[capability_data_indx])
-                            curr = redundacy_element.find(",")
-                            next = redundacy_element.find("]")
-                            self.redundancy_result = redundacy_element[curr+1:next]
-                            self.final_redundancy.append(["g"+str(capability_goal_indx)+".-",self.redundancy_result])
 
                 self.solution_goal = str(self.robot_set[capability_robot_indx])+str(self.final_array)
-                self.solution_redundancy = str(self.robot_set[capability_robot_indx])+str(self.final_redundancy)
                 self.goals_indx_dist.write(str(self.solution_goal)+ '\n')
             self.goals_indx_dist.close()
             self.goals_indx_allocated = True
@@ -67,12 +63,12 @@ class decentralised_robots_distribution(object):
 
 
     def load_capabilities(self):
-        '''
-        load_capabilities loads the goal and robot capabilities from the file to find the sets of robots
-        that can do a particular task.
-        input: robot_file and goals_file
-        output: index of the possible tasks to be implemented for the robot
-        '''
+        #=======================================================================
+        # Loads the goal and robot capabilities from the file to find the
+        # sets of robots that can do a particular task.
+        # input: robot_file and goals_file
+        # output: index of the possible tasks to be implemented for the robot
+        #=======================================================================
         try:
             print('Reading file %s' %self.goals_file)
             goals_ifile = open(self.goals_file, "rw+")
@@ -82,7 +78,6 @@ class decentralised_robots_distribution(object):
             self.data = []
             self.robot_set = []
             self.goal_set = []
-            self.redundancy_set = []
             for self.goals_line_no in range(0, self.goal_file_lines):
                 actual_line = getline(self.goals_file, self.goals_line_no)
                 reader = goals_ifile.readline()
@@ -114,11 +109,6 @@ class decentralised_robots_distribution(object):
                     if  self.goals_capability_name in self.robot_capability_set:
                         if self.wp_type in self.goal_coord_id:
                             self.data.append([self.robot_name, self.goals_line_no])
-                            no_sensors = 1
-                            for len_redundancy in range(0,len(self.ontology_list['redundancy'][str(self.goals_name)])):
-                                if self.ontology_list['redundancy'][str(self.goals_name)][len_redundancy] in self.robot_capability_set:
-                                    no_sensors = no_sensors + 1
-                            self.redundancy_set.append([self.robot_name, no_sensors])
 
             self.capabilities_recognised = True
         except:
@@ -128,6 +118,9 @@ class decentralised_robots_distribution(object):
             self.ontology_list = yaml.safe_load(stream)
 
 if __name__ == '__main__':
+    #===========================================================================
+	# Main method
+	#===========================================================================
     try:
         decentralised_robots_distribution = decentralised_robots_distribution()
         rospy.spin()
