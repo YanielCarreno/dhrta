@@ -48,7 +48,6 @@ class cluster(object):
         self.center_no = req.robots_number
         self.robots_number = req.robots_number
         self.total_iteration = 500
-
         #=======================================================================
         # Task Allocation strategy considering heterogeneous robots which is
         #  based on k-means algorithm and task makespans
@@ -61,7 +60,7 @@ class cluster(object):
             self.load_cap_analyser_results()
             if(self.params_loaded):
                 self.k_means()
-                self.hrta_strategy()
+                self.dhrta_strategy()
                 print("***************************************************************************************")
                 print("* GOAL ALLOCATOR:                                                                     *")
                 print("*   - minimise {tasks makespan, distance betweent POIs}                               *")
@@ -73,7 +72,7 @@ class cluster(object):
 
         else:
             print('MATP: Fleet characteristics were not properly defined ')
-    def hrta_strategy(self):
+    def dhrta_strategy(self):
         #=======================================================================
         # Implement robots distribution in the environment by calculating
         # the number of goals each robot can execut in each area and optimise

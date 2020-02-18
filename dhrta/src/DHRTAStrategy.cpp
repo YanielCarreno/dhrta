@@ -75,7 +75,6 @@ namespace DHRTA {
 
 		ros::init(argc, argv, "dhrta_server");
 		ros::NodeHandle nh("~");
-
 		//==========================================================================
 		// Definition of system parameters
 		//==========================================================================
