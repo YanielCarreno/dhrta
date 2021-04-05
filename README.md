@@ -2,6 +2,8 @@
 
 This repository contains the ROS-DHRTA code, the domain and problems used to prove our task allocation strategy:
 
+Important: This is a simplified version of the algorithm. If you need the full version, please contant the authours.
+
 The implementation is devided in two parts:
 
 
